@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.lblElapsedTime = new System.Windows.Forms.Label();
+            this.tmrTime = new System.Windows.Forms.Timer(this.components);
+            this.txtElapsedTime = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button2
@@ -53,24 +55,28 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.start_Click);
             // 
-            // lblElapsedTime
+            // tmrTime
             // 
-            this.lblElapsedTime.AutoSize = true;
-            this.lblElapsedTime.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblElapsedTime.Location = new System.Drawing.Point(68, 164);
-            this.lblElapsedTime.Name = "lblElapsedTime";
-            this.lblElapsedTime.Size = new System.Drawing.Size(0, 25);
-            this.lblElapsedTime.TabIndex = 3;
+            this.tmrTime.Interval = 1000;
+            this.tmrTime.Tick += new System.EventHandler(this.tmrTime_Tick);
             // 
-            // Form1
+            // txtElapsedTime
+            // 
+            this.txtElapsedTime.Location = new System.Drawing.Point(65, 174);
+            this.txtElapsedTime.Name = "txtElapsedTime";
+            this.txtElapsedTime.Size = new System.Drawing.Size(100, 23);
+            this.txtElapsedTime.TabIndex = 4;
+            this.txtElapsedTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // StopWatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(230, 241);
-            this.Controls.Add(this.lblElapsedTime);
+            this.Controls.Add(this.txtElapsedTime);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
-            this.Name = "Form1";
+            this.Name = "StopWatch";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -81,6 +87,7 @@
 
         private Button button2;
         private Button button1;
-        private Label lblElapsedTime;
+        private System.Windows.Forms.Timer tmrTime;
+        private TextBox txtElapsedTime;
     }
 }

@@ -6,17 +6,19 @@ namespace LSM.Stopwatch
     
     public partial class StopWatch : Form
     {
+        StartStop userStopwatch = new StartStop();
         public bool timeStarted = false;
         public bool timeStopped = true;
-        StartStop userStopwatch = new StartStop();
-        public DateTime startTime = DateTime.MinValue;
+        
+        
+        
         
 
         public StopWatch()
         {
             InitializeComponent();
 
-            userStopwatch.startTime= DateTime.Now;
+           userStopwatch.StartTime= DateTime.MinValue;
         }
        
         private void start_Click (object sender, EventArgs e) 
@@ -30,7 +32,9 @@ namespace LSM.Stopwatch
                 {
                     timeStarted = true;
                     timeStopped= false;
-                    //tmrTime.Enabled = true;
+                    tmrTime.Enabled = true;
+                    
+                    
                 }
             }
             catch (StartException ex)
@@ -51,13 +55,12 @@ namespace LSM.Stopwatch
                 }
                 else
                 {
-                    userStopwatch.endTime = DateTime.Now;
+                    userStopwatch.EndTime = DateTime.Now;
                     timeStopped = true;
-                    timeStarted = false;
-                    TimeSpan elapsed = userStopwatch.endTime - userStopwatch.startTime;
-                    lblElapsedTime.Text = elapsed.ToString("hh\\:mm\\:ss");
-                    //tmrTime.Enabled = false;
-                    startTime= DateTime.Now;
+                    timeStarted = false;                
+                    txtElapsedTime.Text = userStopwatch.ElapsedTime.ToString("hh\\:mm\\:ss");
+                    userStopwatch.StartTime= DateTime.Now;
+                    tmrTime.Enabled = false;
                 }
             }
             catch (StopException ex)
@@ -66,6 +69,15 @@ namespace LSM.Stopwatch
                 MessageBox.Show(ex.Message);
             }
            
-        }       
+        }
+
+        private void tmrTime_Tick(object sender, EventArgs e)
+        {
+            if (tmrTime.Enabled)
+            {
+                txtElapsedTime.Text = userStopwatch.ElapsedTime.ToString("hh\\:mm\\:ss");
+            }
+           
+        }
     }
 }

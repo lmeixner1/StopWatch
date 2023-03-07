@@ -5,10 +5,19 @@ namespace LSM.Stopwatch.BL
     public class StartStop
     {
         //fields
-        public DateTime startTime { get; set; }
-        public DateTime endTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
 
+        public TimeSpan ElapsedTime
+        {
+            get
+            {
+                return EndTime - StartTime;
+            }
+
+        }
     }
+        
 
 
     public class StartException : Exception
@@ -21,4 +30,6 @@ namespace LSM.Stopwatch.BL
         public StopException() : base("Stopwatch has not been started.") { }
     }
 
+   
+   
 }
