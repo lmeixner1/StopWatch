@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lblElapsedTime = new System.Windows.Forms.Label();
@@ -77,7 +76,7 @@
             this.Controls.Add(this.lblElapsedTime);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
-            this.Name = "StopWatch";
+            this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
