@@ -10,7 +10,6 @@ public class StopwatchTest
         [TestMethod]
     public void TestStartStop()
         {
-            Stopwatch user = new Stopwatch();
 
         StartStop userStopWatch = new StartStop();
         double expectedElapsed = 5000.0;
