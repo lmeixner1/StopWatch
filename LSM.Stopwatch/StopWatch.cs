@@ -13,14 +13,15 @@ namespace LSM.Stopwatch
         public bool timeStopped = true;
 
         StartStop userStopwatch = new StartStop();
-        public DateTime startTime = DateTime.MinValue;
+
+      
+        
         
 
         public StopWatch()
         {
             InitializeComponent();
-
-            userStopwatch.startTime= DateTime.Now;
+            
         }
        
         // Within the StartClock method the user clicks the start button invoking the method
@@ -28,6 +29,7 @@ namespace LSM.Stopwatch
         // ..timer and makes the timeStarted boolean true and sets the boolean timeStopped to false.
         private void StartClock (object sender, EventArgs e) 
         {
+            
             try
             {
                 if (!timeStopped)
@@ -35,9 +37,11 @@ namespace LSM.Stopwatch
                     throw new StartException();
                 } else
                 {
+                    userStopwatch.startTime = DateTime.Now;
                     timeStarted = true;
                     timeStopped= false;
                     tmrTime.Enabled = true;
+                    
                 }
             }
             catch (StartException ex)
@@ -64,9 +68,9 @@ namespace LSM.Stopwatch
                     userStopwatch.endTime = DateTime.Now;
                     timeStopped = true;
                     timeStarted = false;
-                    lblElapsedTime.Text = userStopwatch.elapsedTime.ToString("hh\\:mm\\:ss");
+                    lblElapsedTime.Text = userStopwatch.elapsedTime;
                     tmrTime.Enabled = false;
-                    startTime= DateTime.Now;
+                    //userStopwatch.startTime= DateTime.Now;
                 }
             }
             catch (StopException ex)
@@ -79,8 +83,8 @@ namespace LSM.Stopwatch
         //Timer for display
         private void tmrTime_Tick(object sender, EventArgs e)
         {
-            TimeSpan elapsed = DateTime.Now - userStopwatch.startTime;
-            lblElapsedTime.Text = elapsed.ToString("hh\\:mm\\:ss");
+      
+            lblElapsedTime.Text = userStopwatch.elapsedTime;
         }
 
        

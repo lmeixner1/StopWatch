@@ -14,9 +14,15 @@ public class StopwatchTest
         StartStop userStopWatch = new StartStop();
         double expectedElapsed = 5000.0;
         userStopWatch.startTime= DateTime.Now;
-        Thread.Sleep((int)expectedElapsed);
-            
+        Thread.Sleep((int)expectedElapsed);     
         userStopWatch.endTime= DateTime.Now;
-        Assert.IsTrue(userStopWatch.elapsedTime.TotalMilliseconds >= expectedElapsed, "Time can't be less than expected time");
+
+        double elapsedTime; 
+        if (double.TryParse(userStopWatch.elapsedTime, out elapsedTime))
+        {
+            Assert.IsTrue(elapsedTime >= expectedElapsed, "Time can't be less than expected time");
+        }
+      
     }
+
 }

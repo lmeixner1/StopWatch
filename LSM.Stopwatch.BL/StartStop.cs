@@ -13,7 +13,14 @@ namespace LSM.Stopwatch.BL
         //fields
         public DateTime startTime { get; set; }
         public DateTime endTime { get; set; }
-        public TimeSpan elapsedTime { get { return endTime - startTime; } }
+        public string elapsedTime 
+        { 
+            get 
+            { 
+                TimeSpan ts = DateTime.Now - startTime;
+                return ts.ToString(@"hh\:mm\:ss");
+            } 
+        }
 
     }
 
