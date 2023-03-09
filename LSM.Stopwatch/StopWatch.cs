@@ -2,12 +2,16 @@ using LSM.Stopwatch.BL;
 
 namespace LSM.Stopwatch
 {
+    //<summary>
+    // This is my Stopwatch application that begins when the user invokes the StartClock method
+    // ..and ends when the user invokes the StopClock method.
+    //<summary>
 
-    
     public partial class StopWatch : Form
     {
         public bool timeStarted = false;
         public bool timeStopped = true;
+
         StartStop userStopwatch = new StartStop();
         public DateTime startTime = DateTime.MinValue;
         
@@ -19,7 +23,10 @@ namespace LSM.Stopwatch
             userStopwatch.startTime= DateTime.Now;
         }
        
-        private void start_Click (object sender, EventArgs e) 
+        // Within the StartClock method the user clicks the start button invoking the method
+        // ..and the method checks if the boolean timeStopped is false, if so the program starts the
+        // ..timer and makes the timeStarted boolean true and sets the boolean timeStopped to false.
+        private void StartClock (object sender, EventArgs e) 
         {
             try
             {
@@ -30,7 +37,7 @@ namespace LSM.Stopwatch
                 {
                     timeStarted = true;
                     timeStopped= false;
-                    //tmrTime.Enabled = true;
+                    tmrTime.Enabled = true;
                 }
             }
             catch (StartException ex)
@@ -40,8 +47,11 @@ namespace LSM.Stopwatch
             }
             
         }
-
-        private void stop_Click (object sender, EventArgs e)
+        // Within the StopClock method the user clicks the stop button invoking the method
+        // ..and the method checks if the boolean timeStarted is false, if so the program stops the
+        // ..timer and makes the timeStarted boolean false and sets the boolean timeStopped to true
+        // .. it then displays the elapsed time in the label lblElapsedTime.
+        private void StopClock (object sender, EventArgs e)
         {
             try
             {
@@ -54,9 +64,8 @@ namespace LSM.Stopwatch
                     userStopwatch.endTime = DateTime.Now;
                     timeStopped = true;
                     timeStarted = false;
-                    TimeSpan elapsed = userStopwatch.endTime - userStopwatch.startTime;
-                    lblElapsedTime.Text = elapsed.ToString("hh\\:mm\\:ss");
-                    //tmrTime.Enabled = false;
+                    lblElapsedTime.Text = userStopwatch.elapsedTime.ToString("hh\\:mm\\:ss");
+                    tmrTime.Enabled = false;
                     startTime= DateTime.Now;
                 }
             }
@@ -66,6 +75,14 @@ namespace LSM.Stopwatch
                 MessageBox.Show(ex.Message);
             }
            
-        }       
+        }
+        //Timer for display
+        private void tmrTime_Tick(object sender, EventArgs e)
+        {
+            TimeSpan elapsed = DateTime.Now - userStopwatch.startTime;
+            lblElapsedTime.Text = elapsed.ToString("hh\\:mm\\:ss");
+        }
+
+       
     }
 }

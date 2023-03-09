@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lblElapsedTime = new System.Windows.Forms.Label();
+            this.tmrTime = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // button2
@@ -41,7 +43,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Stop";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.stop_Click);
+            this.button2.Click += new System.EventHandler(this.StopClock);
             // 
             // button1
             // 
@@ -51,7 +53,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.start_Click);
+            this.button1.Click += new System.EventHandler(this.StartClock);
             // 
             // lblElapsedTime
             // 
@@ -62,7 +64,12 @@
             this.lblElapsedTime.Size = new System.Drawing.Size(0, 25);
             this.lblElapsedTime.TabIndex = 3;
             // 
-            // Form1
+            // tmrTime
+            // 
+            this.tmrTime.Interval = 1000;
+            this.tmrTime.Tick += new System.EventHandler(this.tmrTime_Tick);
+            // 
+            // StopWatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -70,7 +77,7 @@
             this.Controls.Add(this.lblElapsedTime);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
-            this.Name = "Form1";
+            this.Name = "StopWatch";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -82,5 +89,6 @@
         private Button button2;
         private Button button1;
         private Label lblElapsedTime;
+        private System.Windows.Forms.Timer tmrTime;
     }
 }
