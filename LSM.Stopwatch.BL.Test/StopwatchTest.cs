@@ -15,7 +15,7 @@ public class StopwatchTest
         double expectedElapsed = 5000.0;
         userStopWatch.startTime= DateTime.Now;
         Thread.Sleep((int)expectedElapsed);     
-        userStopWatch.endTime= DateTime.Now;
+        userStopWatch.stopTime= DateTime.Now;
 
         double elapsedTime; 
         if (double.TryParse(userStopWatch.elapsedTime, out elapsedTime))

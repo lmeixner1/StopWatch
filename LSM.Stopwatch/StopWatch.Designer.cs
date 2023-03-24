@@ -43,7 +43,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Stop";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.StopClock);
+            this.button2.Click += new System.EventHandler(this.btnStop);
             // 
             // button1
             // 
@@ -53,7 +53,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.StartClock);
+            this.button1.Click += new System.EventHandler(this.btnStart);
             // 
             // lblElapsedTime
             // 
@@ -66,6 +66,7 @@
             // 
             // tmrTime
             // 
+            this.tmrTime.Enabled = true;
             this.tmrTime.Interval = 1000;
             this.tmrTime.Tick += new System.EventHandler(this.tmrTime_Tick);
             // 
